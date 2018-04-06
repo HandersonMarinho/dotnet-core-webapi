@@ -40,5 +40,24 @@ namespace Sample.Test
             Assert.False(string.IsNullOrEmpty(result3.Id));
             Assert.True(result3.Name == "user3");
         }
+
+        [Fact]
+        public void UpdateDatabase_And_VerifyResult()
+        {
+            IRepository<IUser> db = new InMemoryGenericDatabase<IUser>();
+            IUser user = new User { Gender = EnumGender.Male, Name = "user1" };
+
+            user = db.Add(user);            
+            user.Gender = EnumGender.Female;
+            user.Name = "mary";
+            var prevId = user.Id;
+            var prevTime = user.Time;
+            var result = db.Update(user);
+
+            Assert.NotNull(result);
+            Assert.True(result.Id == prevId);
+            Assert.True(result.Time != prevTime);            
+            Assert.True(result.Name == "mary");
+        }
     }
 }
