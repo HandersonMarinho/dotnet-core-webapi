@@ -1,0 +1,11 @@
+Sample.Service/obj/
+Sample.Service/bin/
+Sample.Repository/obj/
+Sample.Repository/bin/
+Sample.Api/obj/
+Sample.Api/bin/
+Sample.Test/bin/
+Sample.Test/obj/
+Sample.Abstraction/obj/
+Sample.Api/.vs/
+Sample.Abstraction/bin/
