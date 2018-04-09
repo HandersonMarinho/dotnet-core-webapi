@@ -3,42 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Sample.Abstraction.Models;
+using Sample.Abstraction.Services;
 
 namespace Sample.Api.Controllers
 {
     [Route("user")]
     public class UserController : Controller
     {
-        // GET api/values
+        public UserController(IUserServiceController userServiceController)
+        {
+            UserServiceController = userServiceController ?? throw new ArgumentException($"{nameof(userServiceController)} is mandatory");
+        }
+
+        private IUserServiceController UserServiceController { get; set; }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<User> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            return UserServiceController.GetAll().Cast<User>();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public User Get(string id)
         {
-            return "value";
+            return (User)UserServiceController.GetById(id);
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public User Post([FromBody]User value)
         {
+            return (User)UserServiceController.Save(value);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public User Put([FromBody]User value)
         {
+            return (User)UserServiceController.Update(value);
         }
-
-        // DELETE api/values/5
+        
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            UserServiceController.Delete(id);
         }
     }
 }

@@ -9,8 +9,8 @@ namespace Sample.Abstraction.Services
     {
         IUser Save(IUser user);
         IUser Update(IUser user);
-        void Delete(Guid id);
-        IUser GetById(Guid id);
+        void Delete(string id);
+        IUser GetById(string id);
         List<IUser> GetAll();
     }
 }
