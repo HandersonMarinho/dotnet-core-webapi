@@ -36,7 +36,7 @@ namespace Sample.Api.Controllers
             return (User)UserServiceController.Save(value);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut()]
         public User Put([FromBody]User value)
         {
             return (User)UserServiceController.Update(value);
