@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Sample.Abstraction.Services
 {
-    public interface IUserController
+    public interface IUserServiceController
     {
         IUser Save(IUser user);
         IUser Update(IUser user);

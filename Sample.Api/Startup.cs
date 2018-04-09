@@ -24,7 +24,7 @@ namespace Sample.Api
             services.AddTransient<ILoggerService, LoggerService>();
             services.AddTransient<IAppConfiguration, AppConfiguration>();
             services.AddTransient<IRepository<IUser>, UserRepository>();
-            services.AddTransient<IUserController, UserController>();
+            services.AddTransient<IUserServiceController, UserServiceController>();
             services.AddMvc();
         }
 

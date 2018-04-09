@@ -7,9 +7,9 @@ using System.Text;
 
 namespace Sample.Service
 {
-    public class UserController : IUserController
+    public class UserServiceController : IUserServiceController
     {
-        public UserController
+        public UserServiceController
         (
             IAppConfiguration configuration,
             ILoggerService loggerService,
