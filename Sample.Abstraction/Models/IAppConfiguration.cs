@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sample.Abstraction.Models
 {
-    public class Configuration : IConfiguration
+    public interface IAppConfiguration
     {
 
     }

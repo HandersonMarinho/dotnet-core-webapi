@@ -12,7 +12,7 @@ namespace Sample.Repository
     {
         private List<TEntity> CacheData { get; set; } = new List<TEntity>();
 
-        public TEntity Add(TEntity model)
+        public virtual TEntity Add(TEntity model)
         {
             model.Id = Guid.NewGuid().ToString("N");
             model.Time = DateTime.Now;
@@ -21,7 +21,7 @@ namespace Sample.Repository
             return model;
         }
 
-        public TEntity Update(TEntity model)
+        public virtual TEntity Update(TEntity model)
         {
             Delete(model.Id);
             model.Time = DateTime.Now;
@@ -30,27 +30,27 @@ namespace Sample.Repository
             return model;
         }
 
-        public void Delete(string id)
+        public virtual void Delete(string id)
         {
             CacheData = CacheData.Where(x => x.Id != id).ToList();
         }
 
-        public List<TEntity> GetAll()
+        public virtual List<TEntity> GetAll()
         {
             return CacheData;
         }
 
-        public List<TEntity> GetMany(Func<TEntity, bool> expression)
+        public virtual List<TEntity> GetMany(Func<TEntity, bool> expression)
         {
             return CacheData.Where(expression).ToList();
         }
 
-        public TEntity GetOne(Func<TEntity, bool> expression)
+        public virtual TEntity GetOne(Func<TEntity, bool> expression)
         {
             return CacheData.Where(expression).FirstOrDefault();
         }
 
-        public int Count()
+        public virtual int Count()
         {
             return CacheData.Count;
         }

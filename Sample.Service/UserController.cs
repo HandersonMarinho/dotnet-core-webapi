@@ -11,7 +11,7 @@ namespace Sample.Service
     {
         public UserController
         (
-            IConfiguration configuration,
+            IAppConfiguration configuration,
             ILoggerService loggerService,
             IRepository<IUser> repository
         )
