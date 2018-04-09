@@ -49,5 +49,10 @@ namespace Sample.Repository
         {
             return CacheData.Where(expression).FirstOrDefault();
         }
+
+        public int Count()
+        {
+            return CacheData.Count;
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Sample.Abstraction.Repositories
         List<TEntity> GetAll();
         List<TEntity> GetMany(Func<TEntity, bool> expression);
         TEntity GetOne(Func<TEntity, bool> expression);
+        int Count();
     }
 }

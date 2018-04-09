@@ -59,5 +59,33 @@ namespace Sample.Test
             Assert.True(result.Time != prevTime);            
             Assert.True(result.Name == "mary");
         }
+
+        [Fact]
+        public void DeleteDatabase_And_VerrifyResult()
+        {
+            IRepository<IUser> db = new InMemoryGenericDatabase<IUser>();
+            IUser user1 = new User { Gender = EnumGender.Male, Name = "user1" };
+            IUser user2 = new User { Gender = EnumGender.Male, Name = "user2" };
+
+            var result1 = db.Add(user1);
+            db.Add(user2);
+            db.Delete(result1.Id);
+            var result2 = db.GetOne(x => x.Id == result1.Id);
+
+            Assert.Null(result2);
+        }
+
+        [Fact]
+        public void GetDatabase_And_VerifyResult()
+        {
+            IRepository<IUser> db = new InMemoryGenericDatabase<IUser>();
+            for (int i = 0; i < 10; i++)
+            {
+                db.Add(new User { Gender = EnumGender.Male, Name = $"user{i}" });
+            }
+
+            Assert.NotEmpty(db.GetAll());
+            Assert.True(db.Count() == 10);
+        }
     }
 }
